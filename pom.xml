@@ -42,7 +42,7 @@
 
     <build>
 
-        <finalName>springbootdemo</finalName>
+        <finalName>springboot2</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
