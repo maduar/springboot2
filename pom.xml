@@ -18,7 +18,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <springboot.version>2.0.6.RELEASE</springboot.version>
+        <springboot.version>2.1.0.RELEASE</springboot.version>
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
@@ -29,10 +30,6 @@
             <version>${springboot.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -74,6 +71,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
