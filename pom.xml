@@ -7,6 +7,7 @@
     <groupId>com.madaur.springboot2</groupId>
     <artifactId>springboot2</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>demo</name>
     <!-- FIXME change it to the project's website -->
@@ -18,8 +19,10 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <springboot.version>2.1.0.RELEASE</springboot.version>
+        <springboot.version>2.0.6.RELEASE</springboot.version>
         <java.version>1.8</java.version>
+        <transport.version>5.5.2</transport.version>
+        <nexus.ip>150.109.49.131</nexus.ip>
     </properties>
 
     <dependencies>
@@ -30,19 +33,40 @@
             <version>${springboot.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.3.1</version>
             <scope>test</scope>
+        </dependency>
+
+
+        <!--https://mvnrepository.com/artifact/commons-io/commons-io-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+            <version>${transport.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.11.0</version>
         </dependency>
 
     </dependencies>
 
     <build>
 
-        <finalName>springboot2</finalName>
+        <!--<finalName>springboot2</finalName>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -80,5 +104,26 @@
         </plugins>
 
     </build>
+
+    <!-- 项目仓库地址 -->
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus Repository</name>
+            <url>http://150.109.49.131:8081/repository/maven-private/</url>
+        </repository>
+    </repositories>
+
+
+    <!-- 项目发布地址 -->
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>nexus-snapshots</id>
+            <name>Nexus Repository</name>
+            <url>http://150.109.49.131:8081/repository/nexus-snapshots/</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
 
 </project>
