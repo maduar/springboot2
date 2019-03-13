@@ -1,1 +1,63 @@
 server.port: 9900
+
+# change
+project-config:
+  # database
+  mysql:
+    url: 150.109.49.131:3306
+    username: root
+    password: maduarMysql
+
+# nacos server address
+nacos.config.server-addr: 150.109.49.131:8848
+
+spring:
+  mail:
+    host: smtp.163.com
+    username: maduar@163.com
+    password: 163maduar310
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      test:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://150.109.49.131:3306/test
+        username: ${project-config.mysql.username}
+        password: ${project-config.mysql.password}
+        validation-query: select 1
+        validation-interval: 30000
+        initial-size: 3
+        max-active: 100
+        min-idle: 10
+        time-between-eviction-runs-millis: 30000
+        suspect-timeout: 60
+        log-abandoned: false
+        abandon-when-percentage-full: 50
+        min-evictable-idle-time-millis: 60000
+        testOnBorrow: true
+        testWhileIdle: true
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties:
+        druid:
+          stat:
+            mergeSql: true
+            slowSqlMillis: 5000
+      # 合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
+#      aop-patterns: com.ebizprise.das.web.service.*.*
+#
+#mybatis:
+#  mapper-locations: classpath:mapper.mybatisxml/**.xml
+
+#
+#mybatis:
+#  typeAliasesPackage: com.maduar.springboot2.mybatis.
+#  mapperLocations: classpath:com/maduar/springboot/*/*.xml
