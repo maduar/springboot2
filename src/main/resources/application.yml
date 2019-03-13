@@ -14,6 +14,8 @@ project-config:
 nacos.config.server-addr: 150.109.49.131:8848
 
 spring:
+  application:
+    name: springboot2
   mail:
     host: smtp.163.com
     username: maduar@163.com
