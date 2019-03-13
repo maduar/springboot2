@@ -1,4 +1,6 @@
-server.port: 9900
+server:
+  port: 9900
+  name: springboot2
 
 # change
 project-config:
