@@ -63,3 +63,6 @@ spring:
 #mybatis:
 #  typeAliasesPackage: com.maduar.springboot2.mybatis.
 #  mapperLocations: classpath:com/maduar/springboot/*/*.xml
+
+# nacos endpoint
+management.endpoints.web.exposure.include: *
