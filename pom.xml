@@ -150,7 +150,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
-                    <mainClass>com.maduar.springboot2.App</mainClass>
+                    <mainClass>com.madaur.springboot2.App</mainClass>
                     <!--将原始的包作为install和deploy的对象，而不是包含了依赖的包-->
                     <attach>false</attach>
                 </configuration>
