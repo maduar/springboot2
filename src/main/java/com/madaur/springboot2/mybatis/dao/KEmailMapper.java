@@ -2,10 +2,8 @@ package com.madaur.springboot2.mybatis.dao;
 
 
 import com.madaur.springboot2.mybatis.model.KEmail;
-import com.madaur.springboot2.mybatis.provider.KEmailProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
 
@@ -27,7 +25,6 @@ public interface KEmailMapper {
     int updateByPrimaryKeySelective(KEmail record);
 
     int updateByPrimaryKey(KEmail record);
-
 
     List<KEmail> listByEmail(@Param("emailList") List<String> emailList);
 

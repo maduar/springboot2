@@ -25,8 +25,8 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 public class TestController {
 
-    @NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
-    private boolean useLocalCache;
+//    @NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
+//    private boolean useLocalCache;
 
     @GetMapping("/index/{name}/")
     public String test(@PathVariable("name") String name) throws Exception {
@@ -59,8 +59,8 @@ public class TestController {
         return CompletableFuture.completedFuture(dog).thenApply(Dog::getName);
     }
 
-    @GetMapping("/get/name")
-    public String getName() {
-        return "useLocalCache: " + useLocalCache;
-    }
+//    @GetMapping("/get/name")
+//    public String getName() {
+//        return "useLocalCache: " + useLocalCache;
+//    }
 }
