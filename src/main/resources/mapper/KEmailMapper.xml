@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.madaur.springboot2.mybatis.dao.KEmailMapper">
 
-    <resultMap id="BaseResultMap" type="com.madaur.springboot2.mybatis.model.KEmail">
+    <resultMap id="BaseResultMap" type="KEmail">
         <id column="k_id" jdbcType="INTEGER" property="kId" />
         <result column="k_email" jdbcType="VARCHAR" property="kEmail" />
         <result column="t_id" jdbcType="INTEGER" property="tId" />
     </resultMap>
 
-    <resultMap id="Base2ResultMap" type="com.madaur.springboot2.mybatis.model.KEmail">
+    <resultMap id="Base2ResultMap" type="KEmail">
         <result column="k_email" jdbcType="VARCHAR" property="kEmail" />
         <result column="t_id" jdbcType="INTEGER" property="tId" typeHandler="com.madaur.springboot2.typeHandler.TidTypeHandler" />
     </resultMap>
@@ -47,7 +47,8 @@
     </select>
 
     <!-- listByEmail  -->
-    <select id="listByEmail" resultMap="BaseResultMap">
+    <select id="listByEmail" resultType="KEmail">
+    <!--<select id="listByEmail" resultMap="BaseResultMap">-->
         select
         <include refid="Base_Column_List" />
         from k_email
@@ -63,14 +64,14 @@
         where k_id = #{kId,jdbcType=INTEGER}
     </delete>
 
-    <insert id="insert" parameterType="com.madaur.springboot2.mybatis.model.KEmail">
+    <insert id="insert" parameterType="KEmail">
         insert into k_email (k_id, k_email, t_id
         )
         values (#{kId,jdbcType=INTEGER}, #{kEmail,jdbcType=VARCHAR}, #{tId,jdbcType=INTEGER}
         )
     </insert>
 
-    <insert id="insertSelective" parameterType="com.madaur.springboot2.mybatis.model.KEmail">
+    <insert id="insertSelective" parameterType="KEmail">
         insert into k_email
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="kId != null">
@@ -96,7 +97,7 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.madaur.springboot2.mybatis.model.KEmail">
+    <update id="updateByPrimaryKeySelective" parameterType="KEmail">
         update k_email
         <set>
             <if test="kEmail != null">
@@ -109,7 +110,7 @@
         where k_id = #{kId,jdbcType=INTEGER}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.madaur.springboot2.mybatis.model.KEmail">
+    <update id="updateByPrimaryKey" parameterType="KEmail">
         update k_email
         set k_email = #{kEmail,jdbcType=VARCHAR},
         t_id = #{tId,jdbcType=INTEGER}

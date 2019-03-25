@@ -4,14 +4,11 @@ server:
 
 # change
 project-config:
-  # database
   mysql:
     url: 150.109.49.131:3306
-    username: root
-    password: maduarMysql
-
-# nacos server address
-nacos.config.server-addr: 150.109.49.131:8848
+    username: Ja0VJiQhQdGf/uZ0rqO/ftbMFcdQUOxH+27uuv7KGhmxWuLb0mlTD87k8X929SuQKji97a960q3qMJddq5Etvw==
+    password: mWt90GLbtqxthZer/enAAPloHGTmUCHDfe74w5xTv9GjXga8dO2mSnmSZoMqwi3Uxuo14NLkNP9Ko8ZSyvogRw==
+    publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKNPt2hXD5FXkLFdNKTlDraPvDxcs54CP/aIF4POS2P0OzI03nEMdjy+NNBzrIGVEJykoaKdxE8q0oheovEg/RUCAwEAAQ==
 
 spring:
   application:
@@ -33,9 +30,10 @@ spring:
       test:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://150.109.49.131:3306/test
+        url: jdbc:mysql://${project-config.mysql.url}/test?useUnicode=true&characterEncoding=utf8
         username: ${project-config.mysql.username}
         password: ${project-config.mysql.password}
+        connectionProperties: "config.decrypt=true;config.decrypt.key=${project-config.mysql.publickey}"
         validation-query: select 1
         validation-interval: 30000
         initial-size: 3
@@ -48,23 +46,20 @@ spring:
         min-evictable-idle-time-millis: 60000
         testOnBorrow: true
         testWhileIdle: true
+        filters: stat,config
       # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
-      connectionProperties:
-        druid:
-          stat:
-            mergeSql: true
-            slowSqlMillis: 5000
+#      connectionProperties:
+#        config:
+#          decrypt: true
+#            key: ${public-key}
+#        druid:
+#          stat:
+#            mergeSql: true
+#            slowSqlMillis: 5000
       # 合并多个DruidDataSource的监控数据
       useGlobalDataSourceStat: true
 #      aop-patterns: com.ebizprise.das.web.service.*.*
-#
-#mybatis:
-#  mapper-locations: classpath:mapper.mybatisxml/**.xml
 
-#
-#mybatis:
-#  typeAliasesPackage: com.maduar.springboot2.mybatis.
-#  mapperLocations: classpath:com/maduar/springboot/*/*.xml
-
-# nacos endpoint
-management.endpoints.web.exposure.include: *
+mybatis:
+  mapUnderscoreToCamelCase: true
+  typeAliasesPackage: com.maduar.springboot2.mybatis.model
